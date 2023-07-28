@@ -12,7 +12,11 @@ let operator = null;
 function printScreen(value){
     const screen = document.querySelector(".screen");
     if (value.length <= 11 ){
-        screen.innerHTML = value;
+        if (value === "0") {
+            screen.innerHTML = "0"
+        } else {
+            screen.innerHTML = value;
+        }
         
     }
 }
