@@ -33,6 +33,8 @@ buttons.forEach((num) => {
             return currentNum
         }
 
+        console.log(e.target.value)
+
         //if an operator has been pressed the second number will be stored to currentNum, else if no operator is pressed it will just print the pressed button
         if(currentNum === null){
             currentNum += e.target.value
@@ -49,7 +51,7 @@ function resetScreen(){
     const screen = document.querySelector(".screen");
     screen.innerHTML = "0";
     currentNum = "";
-    previousNum = null;
+    previousNum = "";
     operator = null;
 }
 reset.addEventListener("click", resetScreen)
@@ -105,8 +107,14 @@ function operate(){
     }else if(operator === "*"){
         currentNum = (num1 * num2).toString();
     }else if (operator === "/") {
-        currentNum = (num1 / num2).toString();
+        if(num2 === 0){
+            currentNum = "Error, cannot divide by 0"
+        } else {
+            currentNum = (num1 / num2).toString()
+        }
     }
+
+  
 }
 
 equal.addEventListener("click", () => {
