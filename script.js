@@ -1,10 +1,8 @@
 const buttons = document.querySelectorAll(".number-button");
+const equal = document.querySelector(".equal")
 const operatorBtn = document.querySelectorAll(".operator")
 const reset = document.querySelector(".ac")
 const removeNum = document.querySelector(".delete")
-
-
-
 
 
 let currentNum = ""
@@ -44,7 +42,9 @@ buttons.forEach((num) => {
 function resetScreen(){
     const screen = document.querySelector(".screen");
     screen.innerHTML = "0";
-    currentNum = ""
+    currentNum = "";
+    previousNum = null;
+    operator = null;
 }
 reset.addEventListener("click", resetScreen)
 
@@ -60,12 +60,22 @@ function deleteNum(){
 removeNum.addEventListener("click", deleteNum)
 
 
-
 operatorBtn.forEach((button) => {
     button.addEventListener("click", (e) => {
-        console.log(e.target.value)
+
+        if(currentNum !=="" && previousNum === "") {
+            previousNum = currentNum;
+            currentNum = "";
+            operator = e.target.value;
+           
+        }
+        console.log(previousNum)
+        console.log(typeof(currentNum))
+        console.log(operator)
     }) 
 })
+
+
 
 
 
