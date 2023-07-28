@@ -1,7 +1,11 @@
-const buttons = document.querySelectorAll("button");
+const buttons = document.querySelectorAll(".number-button");
+const operatorBtn = document.querySelectorAll(".operator")
 const reset = document.querySelector(".ac")
 const removeNum = document.querySelector(".delete")
-const operatorBtn = document.getElementsByClassName("[operator]")
+
+
+
+
 
 let currentNum = ""
 let previousNum = ""
@@ -13,7 +17,7 @@ function printScreen(value){
 
     //if statement that allows 11 digits on the screen
     if (value.length <= 11 ){
-        //if statement that prevents to print multiple zeros if the initial value is zero
+        //if statement that prevents to print multiple zeros if the initial value isbutton zero
         if (value === "0") {
             screen.innerHTML = "0"
         } else {
@@ -54,6 +58,15 @@ function deleteNum(){
          }
     }
 removeNum.addEventListener("click", deleteNum)
+
+
+
+operatorBtn.forEach((button) => {
+    button.addEventListener("click", (e) => {
+        console.log(e.target.value)
+    }) 
+})
+
 
 
 
