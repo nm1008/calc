@@ -65,19 +65,14 @@ function deleteNum(){
     }
 removeNum.addEventListener("click", deleteNum)
 
-
 operatorBtn.forEach((button) => {
     button.addEventListener("click", (e) => {
 
         if(currentNum !== "" && previousNum === "") {
             previousNum = currentNum;
             currentNum = "";
-            operator = e.target.value;
-            
+            operator = e.target.value;   
         }
-        console.log(previousNum)
-        console.log(currentNum)
-        console.log(operator)
     }) 
 })
 
@@ -109,16 +104,15 @@ function operate(){
         currentNum = (num1 - num2).toString();
     }else if(operator === "*"){
         currentNum = (num1 * num2).toString();
-    }else if (operator = "/") {
+    }else if (operator === "/") {
         currentNum = (num1 / num2).toString();
     }
-
-
-
 }
 
 equal.addEventListener("click", () => {
-    if(currentNum !== "" && previousNum !== "" && operator !== null){
+    if(currentNum !== "" && previousNum === "" & operator === null){
+        printScreen(currentNum)
+    }else if(currentNum !== "" && previousNum !== "" && operator !== null){
         operate()
         printScreen(currentNum)
     }
