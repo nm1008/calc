@@ -1,8 +1,7 @@
 const buttons = document.querySelectorAll("button");
 const reset = document.querySelector(".ac")
 const removeNum = document.querySelector(".delete")
-const operatorBtn = document.getElementsByClassName(".operator")
-console.log(operatorBtn)
+const operatorBtn = document.getElementsByClassName("[operator]")
 
 let currentNum = ""
 let previousNum = ""
@@ -16,17 +15,22 @@ function printScreen(value){
             screen.innerHTML = "0"
         } else {
             screen.innerHTML = value;
-        }
-        
+        }        
     }
 }
 
 buttons.forEach((num) => {
-  num.addEventListener("click", (e) => {
-    currentNum += e.target.value
-    printScreen(currentNum)
-  })
+    num.addEventListener("click", (e) => {
+        
+        if (e.target.value === "." && currentNum.includes(".")){
+            return;
+        }
+            currentNum += e.target.value
+            printScreen(currentNum)
+    })
 })
+
+
 
 
 function resetScreen(){
@@ -43,11 +47,10 @@ function deleteNum(){
             printScreen("0")
         }else{
             printScreen(currentNum)
-        }
-}
+         }
+    }
 removeNum.addEventListener("click", deleteNum)
 
 function operate(){
-    
-}
 
+}
