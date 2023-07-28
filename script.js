@@ -32,11 +32,17 @@ buttons.forEach((num) => {
         if (e.target.value === "." && currentNum.includes(".")){
             return currentNum
         }
-        currentNum += e.target.value
-        printScreen(currentNum)
+
+        //if an operator has been pressed the second number will be stored to currentNum, else if no operator is pressed it will just print the pressed button
+        if(currentNum === null){
+            currentNum += e.target.value
+            printScreen(currentNum)
+        } else {
+            currentNum += e.target.value
+            printScreen(currentNum)
+        }
     })
 })
-
 
 //a function that resets the screen and currentNum
 function resetScreen(){
@@ -63,23 +69,57 @@ removeNum.addEventListener("click", deleteNum)
 operatorBtn.forEach((button) => {
     button.addEventListener("click", (e) => {
 
-        if(currentNum !=="" && previousNum === "") {
+        if(currentNum !== "" && previousNum === "") {
             previousNum = currentNum;
             currentNum = "";
             operator = e.target.value;
-           
+            
         }
         console.log(previousNum)
-        console.log(typeof(currentNum))
+        console.log(currentNum)
         console.log(operator)
     }) 
 })
 
-
-
-
-
-
 function operate(){
 
+   let num1 = parseFloat(previousNum);
+   let num2 = parseFloat(currentNum);
+
+    // switch(operator) {
+    //     case "+":
+    //         currentNum = (num1 + num2).toString();
+    //         break;
+    //     case "-":
+    //         currentNum = (num1 - num2).toString();
+    //         break;
+    //     case "*":
+    //         currentNum = (num1 * num2).toString();
+    //         break;
+    //     case "/":
+    //         currentNum = (num1 - num2).toString();
+    //         break
+    //     default:
+    //         break;
+    // }
+
+    if(operator === "+"){
+        currentNum = (num1 + num2).toString();
+    } else if(operator === "-"){
+        currentNum = (num1 - num2).toString();
+    }else if(operator === "*"){
+        currentNum = (num1 * num2).toString();
+    }else if (operator = "/") {
+        currentNum = (num1 / num2).toString();
+    }
+
+
+
 }
+
+equal.addEventListener("click", () => {
+    if(currentNum !== "" && previousNum !== "" && operator !== null){
+        operate()
+        printScreen(currentNum)
+    }
+})
